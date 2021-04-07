@@ -1,6 +1,8 @@
 # flat_tree
 
-TODO: Write a description here
+[![Build Status](https://travis-ci.com/dukeraphaelng/flat_tree.svg?branch=master)](https://travis-ci.com/dukeraphaelng/flat_tree)
+
+Map a binary tree to a vector. Port of [mafintosh/flat-tree](https://github.com/mafintosh/flat-tree)
 
 ## Installation
 
@@ -9,7 +11,7 @@ TODO: Write a description here
    ```yaml
    dependencies:
      flat_tree:
-       github: your-github-user/flat_tree
+       github: dukeraphaelng/flat_tree
    ```
 
 2. Run `shards install`
@@ -20,15 +22,11 @@ TODO: Write a description here
 require "flat_tree"
 ```
 
-TODO: Write usage instructions here
-
 ## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it (<https://github.com/your-github-user/flat_tree/fork>)
+1. Fork it (<https://github.com/dukeraphaelng/flat_tree/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -36,4 +34,8 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [Anh (Duke) Nguyen](https://github.com/your-github-user) - creator and maintainer
+- [Duke Nguyen](https://github.com/dukeraphaelng) - creator and maintainer
+
+## License
+
+[MIT](LICENSE)
