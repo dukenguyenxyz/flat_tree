@@ -8,6 +8,7 @@
 # d -> depth
 
 require "big"
+require "./iterator"
 
 module FlatTree
   extend self
@@ -111,8 +112,7 @@ module FlatTree
   end
 
   def index(d : UInt64, o : UInt64) : UInt64
-    ((1 + 2 * o) * two_pow(d) - 1).to_u64
-    # (o << (d + 1_u64)) | ((1 << d) - 1_u64)
+    ((1_u64 + 2_u64 * o) * two_pow(d) - 1_u64).to_u64
   end
 
   def offset(i : UInt64, d : UInt64? = nil) : UInt64
@@ -128,10 +128,10 @@ module FlatTree
   end
 
   protected def two_pow(n : UInt64) : UInt64
-    if n < 31
-      1 << n
+    if n < 31_u64
+      1_u64 << n
     else
-      ((1 << 30) * (1 << (n - 30)))
+      ((1_u64 << 30_u64) * (1_u64 << (n - 30_u64)))
     end.to_u64
   end
 end
