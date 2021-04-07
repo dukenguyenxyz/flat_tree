@@ -1,8 +1,11 @@
+# # Reference implementation
 # https://github.com/datrs/flat-tree/blob/master/src/lib.rs
 # https://github.com/mafintosh/flat-tree/blob/master/index.js
 
-# _variable : argument declared in method
-# variable_ : variable declared in method body
+# Variable notation
+# i -> index
+# o -> offset
+# d -> depth
 
 require "big"
 
@@ -12,120 +15,123 @@ module FlatTree
   struct None
   end
 
-  def full_roots(_index : UInt64, _nodes : Array(UInt64) = [] of UInt64)
-    raise ArgumentError.new("You can only look up roots for depth 0 blocks, got index #{_index}") unless _index.even?
+  def full_roots(i : UInt64, nodes : Array(UInt64) = [] of UInt64)
+    raise ArgumentError.new("You can only look up roots for depth 0 blocks, got index #{i}") unless i.even?
 
-    tmp = _index >> 1
-    offset_ = 0_u64
-    factor_ = 1_u64
+    tmp = i >> 1
+    o = 0_u64
+    factor = 1_u64
 
     while tmp != 0_u64
-      while (factor_ * 2_u64) <= tmp
-        factor_ *= 2_u64
+      while (factor * 2_u64) <= tmp
+        factor *= 2_u64
       end
 
-      _nodes.push(offset_ + factor_ - 1_u64)
-      offset_ += 2_u64 * factor_
-      tmp -= factor_
-      factor_ = 1_u64
+      nodes.push(o + factor - 1_u64)
+      o += 2_u64 * factor
+      tmp -= factor
+      factor = 1_u64
     end
 
-    _nodes
+    nodes
   end
 
-  def depth(_index : UInt64?) : UInt64
-    return 0_u64 if _index.nil?
-    (~BigInt.new(_index)).trailing_zeros_count.to_u64
+  def depth(i : UInt64?) : UInt64
+    return 0_u64 if i.nil?
+    (~BigInt.new(i)).trailing_zeros_count.to_u64
   end
 
-  def sibling(_index : UInt64, _depth : UInt64? = nil)
-    _depth = self.depth(_index) if _depth.nil?
-    self.index(_depth, self.offset(_index, _depth) ^ 1)
+  def sibling(i : UInt64, d : UInt64? = nil)
+    d = self.depth(i) if d.nil?
+    self.index(d, self.offset(i, d) ^ 1)
   end
 
-  def parent(_index : UInt64, _depth : UInt64? = nil) : UInt64
-    _depth = self.depth(_index) if _depth.nil?
-    self.index(_depth + 1_u64, self.offset(_index, _depth) >> 1_u64)
+  def parent(i : UInt64, d : UInt64? = nil) : UInt64
+    d = self.depth(i) if d.nil?
+    self.index(d + 1_u64, self.offset(i, d) >> 1_u64)
   end
 
-  def left_child(_index : UInt64 | None.class, _depth : UInt64? = nil) : UInt64 | None.class
-    return None if _index.is_a?(UInt64) && _index.even? || _index.class == None
-    _index = _index.as(UInt64)
-    _depth = self.depth(_index) if _depth.nil?
-    if _depth == 0
-      _index
+  def left_child(i : UInt64 | None.class, d : UInt64? = nil) : UInt64 | None.class
+    return None if i.is_a?(UInt64) && i.even? || i.class == None
+    i = i.as(UInt64)
+    d = self.depth(i) if d.nil?
+    if d == 0
+      i
     else
-      self.index(_depth - 1_u64, self.offset(_index, _depth) << 1)
+      self.index(d - 1_u64, self.offset(i, d) << 1)
     end
   end
 
-  def right_child(_index : UInt64 | None.class, _depth : UInt64? = nil) : UInt64 | None.class
-    return None if _index.even? || _index.class == None
-    _depth = self.depth(_index) if _depth.nil?
-    if _depth == 0_u64
-      _index
+  def right_child(i : UInt64 | None.class, d : UInt64? = nil) : UInt64 | None.class
+    return None if i.even? || i.class == None
+    d = self.depth(i) if d.nil?
+    if d == 0_u64
+      i
     else
-      self.index(_depth - 1, (1 + (self.offset(_index, _depth) << 1)).to_u64)
+      self.index(d - 1, (1 + (self.offset(i, d) << 1)).to_u64)
     end
   end
 
-  def children(_index : UInt64, _depth : UInt64? = nil) : Array(UInt64) | None.class
-    return None if _index.even?
+  def children(i : UInt64, d : UInt64? = nil) : Array(UInt64) | None.class
+    return None if i.even?
 
-    _depth = self.depth(_index) if _depth.nil?
-    offset_ = self.offset(_index, _depth) * 2_u64
+    d = self.depth(i) if d.nil?
+    o = self.offset(i, d) * 2_u64
 
     [
-      index(_depth - 1_u64, offset_),
-      index(_depth - 1_u64, offset_ + 1_u64),
+      index(d - 1_u64, o),
+      index(d - 1_u64, o + 1_u64),
     ]
   end
 
-  def left_span(_index : UInt64, _depth : UInt64? = nil)
-    return _index if _index == 0
-    _depth = self.depth(_index) if _depth.nil?
-    offset(_index, _depth) * (2_u64 << _depth)
+  def left_span(i : UInt64, d : UInt64? = nil)
+    return i if i == 0
+    d = self.depth(i) if d.nil?
+    offset(i, d) * (2_u64 << d)
   end
 
-  def right_span(_index : UInt64, _depth : UInt64? = nil)
-    return _index if _index.even?
-    _depth = self.depth(_index) if _depth.nil?
-    (offset(_index, _depth) + 1_u64) * (2_u64 << _depth) - 2_u64
+  def right_span(i : UInt64, d : UInt64? = nil)
+    return i if i.even?
+    d = self.depth(i) if d.nil?
+    (offset(i, d) + 1_u64) * (2_u64 << d) - 2_u64
   end
 
-  def count(_index : UInt64, _depth : UInt64? = nil)
-    _depth = self.depth(_index) if _depth.nil?
-    (2 << _depth) - 1_u64
+  def count(i : UInt64, d : UInt64? = nil)
+    d = self.depth(i) if d.nil?
+    (2 << d) - 1_u64
   end
 
-  def spans(_index : UInt64, _depth : UInt64? = nil)
-    return [_index, _index] if _index.even?
-    _depth = self.depth(_index) if _depth.nil?
-    offset_ = offset(_index, _depth)
-    width_ = (2 << _depth)
+  def spans(i : UInt64, d : UInt64? = nil)
+    return [i, i] if i.even?
+    d = self.depth(i) if d.nil?
+    o = offset(i, d)
+    width = (2 << d)
 
-    [offset_ * width_, (offset_ + 1_u64) * width_ - 2_u64]
+    [o * width, (o + 1_u64) * width - 2_u64]
   end
 
-  def index(_depth : UInt64, _offset : UInt64) : UInt64
-    ((1 + 2 * _offset) * two_pow(_depth) - 1).to_u64
-    # (_offset << (_depth + 1_u64)) | ((1 << _depth) - 1_u64)
+  def index(d : UInt64, o : UInt64) : UInt64
+    ((1 + 2 * o) * two_pow(d) - 1).to_u64
+    # (o << (d + 1_u64)) | ((1 << d) - 1_u64)
   end
 
-  def offset(_index : UInt64, _depth : UInt64? = nil) : UInt64
-    return (_index/2_u64).to_u64 if _index.even?
-    _depth = self.depth(_index) if _depth.nil?
-    _index >> (_depth + 1)
+  def offset(i : UInt64, d : UInt64? = nil) : UInt64
+    return (i/2_u64).to_u64 if i.even?
+    d = self.depth(i) if d.nil?
+    i >> (d + 1)
   end
 
-  def iterator(_index : UInt64 = 0_u64)
-    iterator_ = Iterator.new
-    iterator_.seek(_index)
-    iterator
+  def iterator(i : UInt64 = 0_u64)
+    ite = Iterator.new
+    ite.seek(i)
+    ite
   end
 
-  def two_pow(n : UInt64) : UInt64
-    output = n < 31_u64 ? 1_u64 << n : ((1_u64 << 30_u64) * (1_u64 << (n - 30_u64)))
-    output.to_u64
+  protected def two_pow(n : UInt64) : UInt64
+    if n < 31
+      1 << n
+    else
+      ((1 << 30) * (1 << (n - 30)))
+    end.to_u64
   end
 end
