@@ -46,7 +46,6 @@ describe FlatTree do
   it "#full_roots" do
     FlatTree.full_roots(0).should eq([] of Int32)
     FlatTree.full_roots(2).should eq([0])
-    pp! FlatTree.full_roots(6)
     FlatTree.full_roots(8).should eq([3])
     FlatTree.full_roots(20).should eq([7, 17])
     FlatTree.full_roots(18).should eq([7, 16])
@@ -115,8 +114,8 @@ describe FlatTree do
   end
 
   describe FlatTree::Iterator do
-    pending "iterates" do
-      iterator = FlatTree.iterator
+    it "iterates" do
+      iterator = FlatTree::Iterator.new
 
       iterator.index.should eq(0)
       iterator.parent.should eq(1)
@@ -128,8 +127,8 @@ describe FlatTree do
       iterator.left_span.should eq(12)
     end
 
-    pending "non-leaft start" do
-      iterator = FlatTree.iterator(1)
+    it "non-leaft start" do
+      iterator = FlatTree::Iterator.new(1_u64)
 
       iterator.index.should eq(1)
       iterator.parent.should eq(3)
@@ -140,8 +139,8 @@ describe FlatTree do
       iterator.left_span.should eq(12)
     end
 
-    pending "#full_root" do
-      iterator = FlatTree.iterator(0)
+    it "#full_root" do
+      iterator = FlatTree::Iterator.new(0_u64)
 
       iterator.full_root(0).should eq(false)
       iterator.full_root(22).should eq(true)
@@ -156,19 +155,19 @@ describe FlatTree do
       iterator.full_root(22).should eq(false)
     end
 
-    pending "#full_root, 10 big random trees" do
+    it "#full_root, 10 big random trees" do
       10.times.each do |_|
-        iterator = FlatTree.iterator(0)
+        iterator = FlatTree::Iterator.new(0_u64)
         tree = ((Random.rand * 0xffffffff).floor * 2).to_u64
         expected = FlatTree.full_roots(tree)
-        actual = [] of Int32
+        actual = [] of UInt64
 
         while iterator.full_root(tree)
           iterator.next_tree
           actual.push(iterator.index)
         end
 
-        actual.should eq(expected)
+        actual.sort.should eq(expected.sort)
         iterator.full_root(tree).should eq(false)
       end
     end

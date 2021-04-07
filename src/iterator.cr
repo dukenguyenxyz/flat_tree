@@ -6,6 +6,8 @@ class FlatTree::Iterator
   property factor : UInt64 = 0_u64
 
   def initialize(@index = 0_u64, @offset = 0_u64, @factor = 0_u64)
+    self.seek(@index)
+    self
   end
 
   def seek(_index : UInt64)
@@ -18,11 +20,11 @@ class FlatTree::Iterator
   end
 
   def is_left
-    (@offset & 1_u64) === 0_u64
+    @offset.even?
   end
 
   def is_right
-    (@offset & 1_u64) === 1_u64
+    @offset.odd?
   end
 
   def contains(_index : UInt64)
@@ -31,7 +33,7 @@ class FlatTree::Iterator
   end
 
   def prev
-    return @index unless @offset
+    return @index if @offset == 0
     @offset -= 1_u64
     @index -= @factor
     @index
@@ -44,54 +46,54 @@ class FlatTree::Iterator
   end
 
   def sibling
-    @is_left ? @next : @prev
+    @is_left ? self.next : self.prev
   end
 
   def parent
-    if @offset & 1_u64
-      @index -= @factor/2_u64
-      @offset = (@offset - 1_u64)/2_u64
+    if @offset.odd?
+      @index -= (@factor/2_u64).to_u64
+      @offset = ((@offset - 1_u64)/2_u64).to_u64
     else
-      @index += @factor/2_u64
-      @offset /= 2_u64
+      @index += (@factor/2_u64).to_u64
+      @offset = (@offset/2_u64).to_u64
     end
     @factor *= 2_u64
     @index
   end
 
   def left_span
-    @index -= @factor/2_u64 + 1_u64
-    @offset = @index/2_u64
+    @index = @index - (@factor/2_u64).to_u64 + 1_u64
+    @offset = (@index/2_u64).to_u64
     @factor = 2_u64
     @index
   end
 
   def right_span
     @index += @factor/2_u64 - 1_u64
-    @offset = @index/2_u64
+    @offset = (@index/2_u64).to_u64
     @factor = 2_u64
     @index
   end
 
   def left_child
     return @index if @factor == 2_u64
-    @factor /= 2_u64
-    @index -= @factor/2_u64
+    @factor = (@factor/2_u64).to_u64
+    @index = (@index - @factor/2_u64).to_u64
     @offset *= 2_u64
     @index
   end
 
   def right_child
     return @index if @factor == 2_u64
-    @factor /= 2_u64
-    @index += @factor/2_u64
+    @factor = (@factor/2_u64).to_u64
+    @index = (@index + @factor/2_u64).to_u64
     @offset = 2_u64 * @offset + 1_u64
     @index
   end
 
   def next_tree
-    @index += @factor/2_u64 + 1_u64
-    @offset = @index/2_u64
+    @index += (@factor/2_u64).to_u64 + 1_u64
+    @offset = (@index/2_u64).to_u64
     @factor = 2_u64
     @index
   end
@@ -101,8 +103,8 @@ class FlatTree::Iterator
       @index = 0_u64
       @factor = 2_u64
     else
-      @index -= @factor/2_u64 - 1_u64
-      @offset = @index/2_u64
+      @index -= (@factor/2_u64).to_u64 - 1_u64
+      @offset = (@index/2_u64).to_u64
       @factor = 2_u64
     end
 
@@ -112,15 +114,18 @@ class FlatTree::Iterator
   def full_root(_index : UInt64)
     return false if _index <= @index || (@index & 1_u64) > 0_u64
     while _index > @index + @factor + @factor/2_u64
-      @index += @factor/2_u64
+      @index += (@factor/2_u64).to_u64
       @factor *= 2_u64
-      @offset /= 2_u64
+      @offset = (@offset/2_u64).to_u64
     end
     true
   end
 
   protected def two_pow(n : UInt64) : UInt64
-    result = (n < 31) ? 1_u64 << n : ((1_u64 << 30) ** (1_u64 << (n - 30)))
-    result.to_u64
+    if n < 31
+      1 << n
+    else
+      ((1 << 30) * (1 << (n - 30)))
+    end.to_u64
   end
 end

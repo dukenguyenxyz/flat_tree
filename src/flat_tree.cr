@@ -108,7 +108,6 @@ module FlatTree
   end
 
   def index(_depth : UInt64, _offset : UInt64) : UInt64
-    pp! _offset
     ((1 + 2 * _offset) * two_pow(_depth) - 1).to_u64
     # (_offset << (_depth + 1_u64)) | ((1 << _depth) - 1_u64)
   end
