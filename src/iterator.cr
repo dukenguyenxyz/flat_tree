@@ -1,5 +1,3 @@
-require "./flat_tree"
-
 class FlatTree::Iterator
   property index : UInt64 = 0_u64
   property offset : UInt64 = 0_u64
