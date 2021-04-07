@@ -1,0 +1,9 @@
+name: flat_tree
+version: 0.1.0
+
+authors:
+  - Anh (Duke) Nguyen <58082199+dukeraphaelng@users.noreply.github.com>
+
+crystal: 1.0.0
+
+license: MIT
