@@ -13,9 +13,6 @@ require "./iterator"
 module FlatTree
   extend self
 
-  struct None
-  end
-
   def full_roots(i : UInt64, nodes : Array(UInt64) = [] of UInt64)
     raise ArgumentError.new("You can only look up roots for depth 0 blocks, got index #{i}") unless i.even?
 
@@ -52,8 +49,8 @@ module FlatTree
     self.index(d + 1_u64, self.offset(i, d) >> 1_u64)
   end
 
-  def left_child(i : UInt64 | None.class, d : UInt64? = nil) : UInt64 | None.class
-    return None if i.is_a?(UInt64) && i.even? || i.class == None
+  def left_child(i : UInt64 | Nil, d : UInt64? = nil) : UInt64 | Nil
+    return nil if i.nil? || i.as(UInt64).even?
     i = i.as(UInt64)
     d = self.depth(i) if d.nil?
     if d == 0
@@ -63,8 +60,8 @@ module FlatTree
     end
   end
 
-  def right_child(i : UInt64 | None.class, d : UInt64? = nil) : UInt64 | None.class
-    return None if i.even? || i.class == None
+  def right_child(i : UInt64 | Nil, d : UInt64? = nil) : UInt64 | Nil
+    return nil if i.nil? || i.as(UInt64).even?
     d = self.depth(i) if d.nil?
     if d == 0_u64
       i
@@ -73,8 +70,8 @@ module FlatTree
     end
   end
 
-  def children(i : UInt64, d : UInt64? = nil) : Array(UInt64) | None.class
-    return None if i.even?
+  def children(i : UInt64, d : UInt64? = nil) : Array(UInt64) | Nil
+    return nil if i.even?
 
     d = self.depth(i) if d.nil?
     o = self.offset(i, d) * 2_u64
