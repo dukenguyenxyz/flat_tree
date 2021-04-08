@@ -44,46 +44,38 @@ module FlatTree
   end
 
   # Returns the index of this elements sibling
-  def sibling(i : UInt64, d : UInt64? = nil)
-    d = self.depth(i) if d.nil?
+  def sibling(i : UInt64, d : UInt64? = self.depth(i))
     self.index(d, self.offset(i, d) ^ 1)
   end
 
   # Returns the index of the parent element in tree
-  def parent(i : UInt64, d : UInt64? = nil) : UInt64
-    d = self.depth(i) if d.nil?
+  def parent(i : UInt64, d : UInt64? = self.depth(i)) : UInt64
     self.index(d + 1_u64, self.offset(i, d) >> 1_u64)
   end
 
   # Returns only the left child of a node.
-  def left_child(i : UInt64 | Nil, d : UInt64? = nil) : UInt64 | Nil
+  def left_child(i : UInt64 | Nil, d : UInt64? = self.depth(i)) : UInt64 | Nil
     return nil if i.nil? || i.as(UInt64).even?
     i = i.as(UInt64)
-    d = self.depth(i) if d.nil?
-    if d == 0
-      i
-    else
-      self.index(d - 1_u64, self.offset(i, d) << 1)
-    end
+
+    return i if d == 0
+    self.index(d - 1_u64, self.offset(i, d) << 1)
   end
 
   # Returns only the right child of a node.
-  def right_child(i : UInt64 | Nil, d : UInt64? = nil) : UInt64 | Nil
+  def right_child(i : UInt64 | Nil, d : UInt64? = self.depth(i)) : UInt64 | Nil
     return nil if i.nil? || i.as(UInt64).even?
-    d = self.depth(i) if d.nil?
-    if d == 0_u64
-      i
-    else
-      self.index(d - 1, (1 + (self.offset(i, d) << 1)).to_u64)
-    end
+    i = i.as(UInt64)
+
+    return i if d == 0_u64
+    self.index(d - 1, (1 + (self.offset(i, d) << 1)).to_u64)
   end
 
   # Returns an array [left_child, right_child] with the indexes of this elements children.
   # If this element does not have any children it returns null
-  def children(i : UInt64, d : UInt64? = nil) : Array(UInt64) | Nil
+  def children(i : UInt64, d : UInt64? = self.depth(i)) : Array(UInt64) | Nil
     return nil if i.even?
 
-    d = self.depth(i) if d.nil?
     o = self.offset(i, d) * 2_u64
 
     [
@@ -93,30 +85,26 @@ module FlatTree
   end
 
   # Returns the left spanning in index in the tree index spans.
-  def left_span(i : UInt64, d : UInt64? = nil)
+  def left_span(i : UInt64, d : UInt64? = self.depth(i))
     return i if i == 0
-    d = self.depth(i) if d.nil?
     offset(i, d) * (2_u64 << d)
   end
 
   # Returns the right spanning in index in the tree index spans.
-  def right_span(i : UInt64, d : UInt64? = nil)
+  def right_span(i : UInt64, d : UInt64? = self.depth(i))
     return i if i.even?
-    d = self.depth(i) if d.nil?
     (offset(i, d) + 1_u64) * (2_u64 << d) - 2_u64
   end
 
   # Returns how many nodes (including parent nodes) a tree contains
-  def count(i : UInt64, d : UInt64? = nil)
-    d = self.depth(i) if d.nil?
+  def count(i : UInt64, d : UInt64? = self.depth(i))
     (2 << d) - 1_u64
   end
 
   # Returns the range (inclusive) the tree root at index spans.
   # For example FlatTree.spans(3) would return [0, 6] (see the usage example).
-  def spans(i : UInt64, d : UInt64? = nil)
+  def spans(i : UInt64, d : UInt64? = self.depth(i))
     return [i, i] if i.even?
-    d = self.depth(i) if d.nil?
     o = offset(i, d)
     width = (2 << d)
 
@@ -129,9 +117,8 @@ module FlatTree
   end
 
   # Returns the relative offset of an element
-  def offset(i : UInt64, d : UInt64? = nil) : UInt64
+  def offset(i : UInt64, d : UInt64? = self.depth(i)) : UInt64
     return (i/2_u64).to_u64 if i.even?
-    d = self.depth(i) if d.nil?
     i >> (d + 1)
   end
 
