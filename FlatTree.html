@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="0.1.2">
+<meta name="crystal_docs.project_name" content="flat_tree">
+
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="flat_tree">
+  <title>FlatTree - flat_tree 0.1.2</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          flat_tree
+        </a>
+      </h1>
+
+      <span class="project-version">
+        0.1.2
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="flat_tree/FlatTree" data-name="flattree">
+      <a href="FlatTree.html">FlatTree</a>
+      
+        <ul>
+  
+  <li class=" " data-id="flat_tree/FlatTree/Iterator" data-name="flattree::iterator">
+      <a href="FlatTree/Iterator.html">Iterator</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">module</span> FlatTree
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="FlatTree.html">FlatTree</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L13" target="_blank">
+        flat_tree.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L1" target="_blank">
+        iterator.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#children(i:UInt64,d:UInt64?=self.depth(i)):Array(UInt64)?-instance-method" class="signature"><strong>#children</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i)) : Array(UInt64)?</a>
+        
+          <div class="summary"><p>Returns an array [left_child, right_child] with the indexes of this elements children.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#count(i:UInt64,d:UInt64?=self.depth(i))-instance-method" class="signature"><strong>#count</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))</a>
+        
+          <div class="summary"><p>Returns how many nodes (including parent nodes) a tree contains</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#depth(i:UInt64?):UInt64-instance-method" class="signature"><strong>#depth</strong>(i : UInt64?) : UInt64</a>
+        
+          <div class="summary"><p>Returns the depth of an element</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#full_roots(i:UInt64,nodes:Array(UInt64)=[]ofUInt64)-instance-method" class="signature"><strong>#full_roots</strong>(i : UInt64, nodes : Array(UInt64) = <span class="o">[]</span> <span class="k">of</span> <span class="t">UInt64</span>)</a>
+        
+          <div class="summary"><p>Returns a list of all the full roots (subtrees where all nodes have either 2 or 0 children) &lt; index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#index(d:UInt64,o:UInt64):UInt64-instance-method" class="signature"><strong>#index</strong>(d : UInt64, o : UInt64) : UInt64</a>
+        
+          <div class="summary"><p>Returns an array index for the tree element at the given depth and offset</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#iterator(i:UInt64=0_u64)-instance-method" class="signature"><strong>#iterator</strong>(i : UInt64 = <span class="n">0_u64</span>)</a>
+        
+          <div class="summary"><p>Create a stateful tree iterator starting at a given index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#left_child(i:UInt64?,d:UInt64?=self.depth(i)):UInt64?-instance-method" class="signature"><strong>#left_child</strong>(i : UInt64?, d : UInt64? = <span class="k">self</span>.depth(i)) : UInt64?</a>
+        
+          <div class="summary"><p>Returns only the left child of a node.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#left_span(i:UInt64,d:UInt64?=self.depth(i))-instance-method" class="signature"><strong>#left_span</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))</a>
+        
+          <div class="summary"><p>Returns the left spanning in index in the tree index spans.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#offset(i:UInt64,d:UInt64?=self.depth(i)):UInt64-instance-method" class="signature"><strong>#offset</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i)) : UInt64</a>
+        
+          <div class="summary"><p>Returns the relative offset of an element</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parent(i:UInt64,d:UInt64?=self.depth(i)):UInt64-instance-method" class="signature"><strong>#parent</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i)) : UInt64</a>
+        
+          <div class="summary"><p>Returns the index of the parent element in tree</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#right_child(i:UInt64?,d:UInt64?=self.depth(i)):UInt64?-instance-method" class="signature"><strong>#right_child</strong>(i : UInt64?, d : UInt64? = <span class="k">self</span>.depth(i)) : UInt64?</a>
+        
+          <div class="summary"><p>Returns only the right child of a node.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#right_span(i:UInt64,d:UInt64?=self.depth(i))-instance-method" class="signature"><strong>#right_span</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))</a>
+        
+          <div class="summary"><p>Returns the right spanning in index in the tree index spans.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sibling(i:UInt64,d:UInt64?=self.depth(i))-instance-method" class="signature"><strong>#sibling</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))</a>
+        
+          <div class="summary"><p>Returns the index of this elements sibling</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#spans(i:UInt64,d:UInt64?=self.depth(i))-instance-method" class="signature"><strong>#spans</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))</a>
+        
+          <div class="summary"><p>Returns the range (inclusive) the tree root at index spans.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+</div>
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="children(i:UInt64,d:UInt64?=self.depth(i)):Array(UInt64)?-instance-method">
+      <div class="signature">
+        
+        def <strong>children</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i)) : Array(UInt64)?
+
+        <a class="method-permalink" href="#children(i:UInt64,d:UInt64?=self.depth(i)):Array(UInt64)?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an array [left_child, right_child] with the indexes of this elements children.
+If this element does not have any children it returns null</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L76" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="count(i:UInt64,d:UInt64?=self.depth(i))-instance-method">
+      <div class="signature">
+        
+        def <strong>count</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))
+
+        <a class="method-permalink" href="#count(i:UInt64,d:UInt64?=self.depth(i))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns how many nodes (including parent nodes) a tree contains</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L100" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="depth(i:UInt64?):UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>depth</strong>(i : UInt64?) : UInt64
+
+        <a class="method-permalink" href="#depth(i:UInt64?):UInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the depth of an element</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="full_roots(i:UInt64,nodes:Array(UInt64)=[]ofUInt64)-instance-method">
+      <div class="signature">
+        
+        def <strong>full_roots</strong>(i : UInt64, nodes : Array(UInt64) = <span class="o">[]</span> <span class="k">of</span> <span class="t">UInt64</span>)
+
+        <a class="method-permalink" href="#full_roots(i:UInt64,nodes:Array(UInt64)=[]ofUInt64)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a list of all the full roots (subtrees where all nodes have either 2 or 0 children) &lt; index.
+For example full_roots(8) returns [3] since the subtree rooted at 3 spans 0 -> 6 and the tree rooted
+at 7 has a child located at 9 which is >= 8.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="index(d:UInt64,o:UInt64):UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>index</strong>(d : UInt64, o : UInt64) : UInt64
+
+        <a class="method-permalink" href="#index(d:UInt64,o:UInt64):UInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns an array index for the tree element at the given depth and offset</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L115" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="iterator(i:UInt64=0_u64)-instance-method">
+      <div class="signature">
+        
+        def <strong>iterator</strong>(i : UInt64 = <span class="n">0_u64</span>)
+
+        <a class="method-permalink" href="#iterator(i:UInt64=0_u64)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Create a stateful tree iterator starting at a given index. The iterator exposes the following methods.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L126" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="left_child(i:UInt64?,d:UInt64?=self.depth(i)):UInt64?-instance-method">
+      <div class="signature">
+        
+        def <strong>left_child</strong>(i : UInt64?, d : UInt64? = <span class="k">self</span>.depth(i)) : UInt64?
+
+        <a class="method-permalink" href="#left_child(i:UInt64?,d:UInt64?=self.depth(i)):UInt64?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns only the left child of a node.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="left_span(i:UInt64,d:UInt64?=self.depth(i))-instance-method">
+      <div class="signature">
+        
+        def <strong>left_span</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))
+
+        <a class="method-permalink" href="#left_span(i:UInt64,d:UInt64?=self.depth(i))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the left spanning in index in the tree index spans.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L88" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="offset(i:UInt64,d:UInt64?=self.depth(i)):UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>offset</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i)) : UInt64
+
+        <a class="method-permalink" href="#offset(i:UInt64,d:UInt64?=self.depth(i)):UInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the relative offset of an element</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L120" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parent(i:UInt64,d:UInt64?=self.depth(i)):UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>parent</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i)) : UInt64
+
+        <a class="method-permalink" href="#parent(i:UInt64,d:UInt64?=self.depth(i)):UInt64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the index of the parent element in tree</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L52" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="right_child(i:UInt64?,d:UInt64?=self.depth(i)):UInt64?-instance-method">
+      <div class="signature">
+        
+        def <strong>right_child</strong>(i : UInt64?, d : UInt64? = <span class="k">self</span>.depth(i)) : UInt64?
+
+        <a class="method-permalink" href="#right_child(i:UInt64?,d:UInt64?=self.depth(i)):UInt64?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns only the right child of a node.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L66" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="right_span(i:UInt64,d:UInt64?=self.depth(i))-instance-method">
+      <div class="signature">
+        
+        def <strong>right_span</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))
+
+        <a class="method-permalink" href="#right_span(i:UInt64,d:UInt64?=self.depth(i))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the right spanning in index in the tree index spans.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L94" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sibling(i:UInt64,d:UInt64?=self.depth(i))-instance-method">
+      <div class="signature">
+        
+        def <strong>sibling</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))
+
+        <a class="method-permalink" href="#sibling(i:UInt64,d:UInt64?=self.depth(i))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the index of this elements sibling</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L47" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="spans(i:UInt64,d:UInt64?=self.depth(i))-instance-method">
+      <div class="signature">
+        
+        def <strong>spans</strong>(i : UInt64, d : UInt64? = <span class="k">self</span>.depth(i))
+
+        <a class="method-permalink" href="#spans(i:UInt64,d:UInt64?=self.depth(i))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the range (inclusive) the tree root at index spans.
+For example FlatTree.spans(3) would return [0, 6] (see the usage example).</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/flat_tree.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

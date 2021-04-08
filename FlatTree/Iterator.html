@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="0.1.2">
+<meta name="crystal_docs.project_name" content="flat_tree">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="flat_tree">
+  <title>FlatTree::Iterator - flat_tree 0.1.2</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          flat_tree
+        </a>
+      </h1>
+
+      <span class="project-version">
+        0.1.2
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="flat_tree/FlatTree" data-name="flattree">
+      <a href="../FlatTree.html">FlatTree</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="flat_tree/FlatTree/Iterator" data-name="flattree::iterator">
+      <a href="../FlatTree/Iterator.html">Iterator</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> FlatTree::Iterator
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../FlatTree/Iterator.html">FlatTree::Iterator</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L1" target="_blank">
+        iterator.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(index=0_u64,offset=0_u64,factor=0_u64)-class-method" class="signature"><strong>.new</strong>(index = <span class="n">0_u64</span>, offset = <span class="n">0_u64</span>, factor = <span class="n">0_u64</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#contains(i:UInt64)-instance-method" class="signature"><strong>#contains</strong>(i : UInt64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#factor:UInt64-instance-method" class="signature"><strong>#factor</strong> : UInt64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#factor=(factor:UInt64)-instance-method" class="signature"><strong>#factor=</strong>(factor : UInt64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#full_root(i:UInt64)-instance-method" class="signature"><strong>#full_root</strong>(i : UInt64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#index:UInt64-instance-method" class="signature"><strong>#index</strong> : UInt64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#index=(index:UInt64)-instance-method" class="signature"><strong>#index=</strong>(index : UInt64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#is_left-instance-method" class="signature"><strong>#is_left</strong></a>
+        
+          <div class="summary"><p>Is the iterator at a left sibling?</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#is_right-instance-method" class="signature"><strong>#is_right</strong></a>
+        
+          <div class="summary"><p>Is the iterator at a right sibling?</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#left_child-instance-method" class="signature"><strong>#left_child</strong></a>
+        
+          <div class="summary"><p>Move the iterator to the current left child index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#left_span-instance-method" class="signature"><strong>#left_span</strong></a>
+        
+          <div class="summary"><p>Move the iterator to the current left span index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#next-instance-method" class="signature"><strong>#next</strong></a>
+        
+          <div class="summary"><p>Move the iterator the next item in the tree.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#next_tree-instance-method" class="signature"><strong>#next_tree</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#offset:UInt64-instance-method" class="signature"><strong>#offset</strong> : UInt64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#offset=(offset:UInt64)-instance-method" class="signature"><strong>#offset=</strong>(offset : UInt64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parent-instance-method" class="signature"><strong>#parent</strong></a>
+        
+          <div class="summary"><p>Move the iterator to the current parent index</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#prev-instance-method" class="signature"><strong>#prev</strong></a>
+        
+          <div class="summary"><p>Move the iterator the prev item in the tree.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#prev_tree-instance-method" class="signature"><strong>#prev_tree</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#right_child-instance-method" class="signature"><strong>#right_child</strong></a>
+        
+          <div class="summary"><p>Move the iterator to the current right child index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#right_span-instance-method" class="signature"><strong>#right_span</strong></a>
+        
+          <div class="summary"><p>Move the iterator to the current right span index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#seek(i:UInt64)-instance-method" class="signature"><strong>#seek</strong>(i : UInt64)</a>
+        
+          <div class="summary"><p>Move the iterator the this specific tree index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sibling-instance-method" class="signature"><strong>#sibling</strong></a>
+        
+          <div class="summary"><p>Move the iterator to the current sibling</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(index=0_u64,offset=0_u64,factor=0_u64)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(index = <span class="n">0_u64</span>, offset = <span class="n">0_u64</span>, factor = <span class="n">0_u64</span>)
+
+        <a class="method-permalink" href="#new(index=0_u64,offset=0_u64,factor=0_u64)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="contains(i:UInt64)-instance-method">
+      <div class="signature">
+        
+        def <strong>contains</strong>(i : UInt64)
+
+        <a class="method-permalink" href="#contains(i:UInt64)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="factor:UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>factor</strong> : UInt64
+
+        <a class="method-permalink" href="#factor:UInt64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="factor=(factor:UInt64)-instance-method">
+      <div class="signature">
+        
+        def <strong>factor=</strong>(factor : UInt64)
+
+        <a class="method-permalink" href="#factor=(factor:UInt64)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="full_root(i:UInt64)-instance-method">
+      <div class="signature">
+        
+        def <strong>full_root</strong>(i : UInt64)
+
+        <a class="method-permalink" href="#full_root(i:UInt64)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L123" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="index:UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>index</strong> : UInt64
+
+        <a class="method-permalink" href="#index:UInt64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="index=(index:UInt64)-instance-method">
+      <div class="signature">
+        
+        def <strong>index=</strong>(index : UInt64)
+
+        <a class="method-permalink" href="#index=(index:UInt64)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="is_left-instance-method">
+      <div class="signature">
+        
+        def <strong>is_left</strong>
+
+        <a class="method-permalink" href="#is_left-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Is the iterator at a left sibling?</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="is_right-instance-method">
+      <div class="signature">
+        
+        def <strong>is_right</strong>
+
+        <a class="method-permalink" href="#is_right-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Is the iterator at a right sibling?</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="left_child-instance-method">
+      <div class="signature">
+        
+        def <strong>left_child</strong>
+
+        <a class="method-permalink" href="#left_child-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Move the iterator to the current left child index.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="left_span-instance-method">
+      <div class="signature">
+        
+        def <strong>left_span</strong>
+
+        <a class="method-permalink" href="#left_span-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Move the iterator to the current left span index.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L70" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="next-instance-method">
+      <div class="signature">
+        
+        def <strong>next</strong>
+
+        <a class="method-permalink" href="#next-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Move the iterator the next item in the tree.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L45" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="next_tree-instance-method">
+      <div class="signature">
+        
+        def <strong>next_tree</strong>
+
+        <a class="method-permalink" href="#next_tree-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L103" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="offset:UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>offset</strong> : UInt64
+
+        <a class="method-permalink" href="#offset:UInt64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="offset=(offset:UInt64)-instance-method">
+      <div class="signature">
+        
+        def <strong>offset=</strong>(offset : UInt64)
+
+        <a class="method-permalink" href="#offset=(offset:UInt64)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parent-instance-method">
+      <div class="signature">
+        
+        def <strong>parent</strong>
+
+        <a class="method-permalink" href="#parent-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Move the iterator to the current parent index</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="prev-instance-method">
+      <div class="signature">
+        
+        def <strong>prev</strong>
+
+        <a class="method-permalink" href="#prev-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Move the iterator the prev item in the tree.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L37" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="prev_tree-instance-method">
+      <div class="signature">
+        
+        def <strong>prev_tree</strong>
+
+        <a class="method-permalink" href="#prev_tree-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L110" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="right_child-instance-method">
+      <div class="signature">
+        
+        def <strong>right_child</strong>
+
+        <a class="method-permalink" href="#right_child-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Move the iterator to the current right child index.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L95" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="right_span-instance-method">
+      <div class="signature">
+        
+        def <strong>right_span</strong>
+
+        <a class="method-permalink" href="#right_span-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Move the iterator to the current right span index.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L78" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="seek(i:UInt64)-instance-method">
+      <div class="signature">
+        
+        def <strong>seek</strong>(i : UInt64)
+
+        <a class="method-permalink" href="#seek(i:UInt64)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Move the iterator the this specific tree index.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sibling-instance-method">
+      <div class="signature">
+        
+        def <strong>sibling</strong>
+
+        <a class="method-permalink" href="#sibling-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Move the iterator to the current sibling</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/flat_tree/blob/v0.1.2/src/iterator.cr#L52" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
