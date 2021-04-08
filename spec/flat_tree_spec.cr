@@ -18,20 +18,20 @@ describe FlatTree do
   end
 
   it "#children" do
-    FlatTree.children(0).should eq(FlatTree::None)
+    FlatTree.children(0).should eq(nil)
     FlatTree.children(1).should eq([0, 2])
     FlatTree.children(3).should eq([1, 5])
     FlatTree.children(9).should eq([8, 10])
   end
 
   it "#left_child" do
-    FlatTree.left_child(0).should eq(FlatTree::None)
+    FlatTree.left_child(0).should eq(nil)
     FlatTree.left_child(1).should eq(0)
     FlatTree.left_child(3).should eq(1)
   end
 
   it "#right_child" do
-    FlatTree.right_child(0).should eq(FlatTree::None)
+    FlatTree.right_child(0).should eq(nil)
     FlatTree.right_child(1).should eq(2)
     FlatTree.right_child(3).should eq(5)
   end
