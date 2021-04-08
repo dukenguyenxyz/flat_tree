@@ -121,10 +121,8 @@ module FlatTree
     i >> (d + 1)
   end
 
-  def iterator(i : UInt64 = 0_u64)
-    ite = Iterator.new
-    ite.seek(i)
-    ite
+  def iterator(i : UInt64 = 0u64)
+    Iterator.new(i)
   end
 
   protected def two_pow(n : UInt64) : UInt64
