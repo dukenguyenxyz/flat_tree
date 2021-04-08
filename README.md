@@ -35,10 +35,10 @@ require "flat_tree"
 
 list = [] of String
 
-i = FlatTree.index(0_u64, 0_u64) // get array index for depth: 0, offset: 0
-j = FlatTree.index(1_u64, 0_u64) // get array index for depth: 1, offset: 0
+i = FlatTree.index(0_u64, 0_u64) # get array index for depth: 0, offset: 0
+j = FlatTree.index(1_u64, 0_u64) # get array index for depth: 1, offset: 0
 
-// use these indexes to store some data
+# use these indexes to store some data
 
 list[i] = 'a'
 list[j] = 'b'
