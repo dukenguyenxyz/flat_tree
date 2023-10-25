@@ -1,6 +1,6 @@
 # flat_tree
 
-[![Build Status](https://travis-ci.com/dukeraphaelng/flat_tree.svg?branch=master)](https://travis-ci.com/dukeraphaelng/flat_tree) [![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://dukeraphaelng.github.io/flat_tree/) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/dukeraphaelng/flat_tree)](https://img.shields.io/github/v/release/dukeraphaelng/flat_tree?style=flat-square)
+[![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://dukeraphaelng.github.io/flat_tree/) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/dukeraphaelng/flat_tree)](https://img.shields.io/github/v/release/dukeraphaelng/flat_tree?style=flat-square)
 
 Map a binary tree to a vector. Port of [mafintosh/flat-tree](https://github.com/mafintosh/flat-tree)
 
